@@ -58,13 +58,16 @@
         // points.sort(compareAsc);
 
         /**** راه دوم ****/
-        points.sort(function (a, b) {
-          // if (a > b) return 1;
-          // else if (a < b) return -1;
-          // else return 0;
+        // points.sort(function (a, b) {
+        //   // if (a > b) return 1;
+        //   // else if (a < b) return -1;
+        //   // else return 0;
 
-          return a - b;
-        });
+        //   return a - b;
+        // });
+
+        /**** راه سوم ****/
+        points.sort((a, b) => a - b)
 
         document.getElementById('p2').innerHTML = points;
       };
@@ -81,13 +84,16 @@
         // points.sort(compareDesc);
 
         /**** راه دوم ****/
-        points.sort(function (a, b) {
-          // if (b > a) return 1;
-          // else if (b < a) return -1;
-          // else return 0;
+        // points.sort(function (a, b) {
+        //   // if (b > a) return 1;
+        //   // else if (b < a) return -1;
+        //   // else return 0;
 
-          return b - a;
-        });
+        //   return b - a;
+        // });
+
+         /**** راه سوم ****/
+         points.sort((a, b) => b - a)
 
         document.getElementById('p2').innerHTML = points;
       };
@@ -101,7 +107,7 @@
       };
 
       document.getElementById('btn6').onclick = function () {
-        cars.sort(function (car1, car2) {
+        cars.sort((car1, car2) =>{
 
           /****** Case Sensitive *******/
           // if (car1.type > car2.type) return 1;
@@ -114,8 +120,8 @@
           // else return 0;
 
           // برای کارایی بهتر
-          var car1Type = car1.type.toLowerCase();
-          var car2type = car2.type.toLowerCase();
+          let car1Type = car1.type.toLowerCase();
+          let car2type = car2.type.toLowerCase();
 
           if (car1Type > car2type) return 1;
           else if (car1Type < car2type) return -1;
@@ -130,9 +136,7 @@
       };
 
       document.getElementById('btn7').onclick = function () {
-        cars.sort(function (car1, car2) {
-          return car2.year - car1.year;
-        });
+        cars.sort((c1, c2) => c1.year - c2.year );
 
         var txt = '';
         for (var car of cars) {
