@@ -1,0 +1,14 @@
+.title{
+  font-size: 42px;
+  color: black;
+}
+.title > span {
+  border-bottom: 4px solid orangered;
+}
+
+.textCenter{
+  text-align: center;
+}
+.text-center{
+  text-align: center;
+}
