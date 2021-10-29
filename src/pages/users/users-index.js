@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import User from './user';
 import { PageTitle } from '../../components/page-title';
+import { Link } from 'react-router-dom';
 
 export default class UsersIndex extends Component {
   constructor() {
@@ -36,7 +37,11 @@ export default class UsersIndex extends Component {
     return (
       <div className='container'>
         <PageTitle title='Users' />
-        
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Link to='/users/new' className='btn btn-new'>
+            New User
+          </Link>
+        </div>
         {this.state.userList.length > 0 ? (
           <div className='row'>
             {this.state.userList.map((user) => (

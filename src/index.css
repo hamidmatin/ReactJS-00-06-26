@@ -120,6 +120,7 @@ code {
   padding: .5em 1em;
   cursor: pointer;
   font-size: 16px;
+  text-decoration: none;
 }
 .btn.btn-delete{
   background-color: orangered;
@@ -135,6 +136,14 @@ code {
 }
 .btn.btn-edit:hover{
   background-color: hsl(210, 100%, 46%);
+}
+
+.btn.btn-new{
+  background-color: rgb(83, 216, 83);
+  color: white;
+}
+.btn.btn-new:hover{
+  background-color: hsl(84, 100%, 39%);
 }
 
 .btn+.btn{

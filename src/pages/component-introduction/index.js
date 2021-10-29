@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ClassBaseComponent } from '../../components/intro/class-base-component';
 import ClassComponentLifecycle from '../../components/intro/class-component-lifecycle';
 import { FunctionBaseComponent } from '../../components/intro/function-base-component';
+import { PageTitle } from '../../components/page-title';
 
 export class ComponentIntroductionIndex extends Component {
   constructor() {
@@ -19,6 +20,8 @@ export class ComponentIntroductionIndex extends Component {
   render() {
     return (
       <div className='container'>
+        <PageTitle title='Home'/>
+
         <button onClick={this.messageChangeHandler.bind(this, 'My counter changed by bind')}>
           Change message
         </button>
