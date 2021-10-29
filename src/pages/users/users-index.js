@@ -1,122 +1,61 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
 import User from './user';
+import { PageTitle } from '../../components/page-title';
 
 export default class UsersIndex extends Component {
   constructor() {
     super();
     this.state = {
-      userList: [
-        {
-          id: 1,
-          name: 'Leanne Graham',
-          username: 'Bret',
-          email: 'Sincere@april.biz',
-          address: {
-            street: 'Kulas Light',
-            suite: 'Apt. 556',
-            city: 'Gwenborough',
-            zipcode: '92998-3874',
-            geo: {
-              lat: '-37.3159',
-              lng: '81.1496',
-            },
-          },
-          phone: '1-770-736-8031 x56442',
-          website: 'hildegard.org',
-          company: {
-            name: 'Romaguera-Crona',
-            catchPhrase: 'Multi-layered client-server neural-net',
-            bs: 'harness real-time e-markets',
-          },
-        },
-        {
-          id: 2,
-          name: 'Ervin Howell',
-          username: 'Antonette',
-          email: 'Shanna@melissa.tv',
-          address: {
-            street: 'Victor Plains',
-            suite: 'Suite 879',
-            city: 'Wisokyburgh',
-            zipcode: '90566-7771',
-            geo: {
-              lat: '-43.9509',
-              lng: '-34.4618',
-            },
-          },
-          phone: '010-692-6593 x09125',
-          website: 'anastasia.net',
-          company: {
-            name: 'Deckow-Crist',
-            catchPhrase: 'Proactive didactic contingency',
-            bs: 'synergize scalable supply-chains',
-          },
-        },
-        {
-          id: 3,
-          name: 'Clementine Bauch',
-          username: 'Samantha',
-          email: 'Nathan@yesenia.net',
-          address: {
-            street: 'Douglas Extension',
-            suite: 'Suite 847',
-            city: 'McKenziehaven',
-            zipcode: '59590-4157',
-            geo: {
-              lat: '-68.6102',
-              lng: '-47.0653',
-            },
-          },
-          phone: '1-463-123-4447',
-          website: 'ramiro.info',
-          company: {
-            name: 'Romaguera-Jacobson',
-            catchPhrase: 'Face to face bifurcated interface',
-            bs: 'e-enable strategic applications',
-          },
-        },
-        {
-          id: 4,
-          name: 'Patricia Lebsack',
-          username: 'Karianne',
-          email: 'Julianne.OConner@kory.org',
-          address: {
-            street: 'Hoeger Mall',
-            suite: 'Apt. 692',
-            city: 'South Elvis',
-            zipcode: '53919-4257',
-            geo: {
-              lat: '29.4572',
-              lng: '-164.2990',
-            },
-          },
-          phone: '493-170-9623 x156',
-          website: 'kale.biz',
-          company: {
-            name: 'Robel-Corkery',
-            catchPhrase: 'Multi-tiered zero tolerance productivity',
-            bs: 'transition cutting-edge web services',
-          },
-        },
-      ],
+      userList: [],
     };
   }
+
+  componentDidMount() {
+    axios.get('https://jsonplaceholder.typicode.com/users').then((response) => {
+      // console.log(response.data);
+      this.setState({ ...this.state, userList: response.data });
+    });
+  }
+
+  deleteUserHandler = (id) => {
+    console.log(id);
+    axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`).then((response) => {
+      console.log(response);
+
+      let newUserList = [...this.state.userList];
+      newUserList = newUserList.filter((user) => user.id !== id);
+      console.log(newUserList);
+
+      this.setState({ ...this.state, userList: newUserList });
+    });
+  };
+
   render() {
     return (
-      <div className='row'>
-        {/* <div className='col-md-6 col-lg-4'>
-          <User
-            name={this.state.userList[0].name}
-            userName={this.state.userList[0].username}
-            email={this.state.userList[0].email}
-            phone={this.state.userList[0].phone}
-          />
-        </div> */}
-        {this.state.userList.map(user => (
-          <div className='col-md-6 col-lg-4' key={user.id}>
-            <User name={user.name} userName={user.username} email={user.email} phone={user.phone} />
+      <div className='container'>
+        <PageTitle title='Users' />
+        
+        {this.state.userList.length > 0 ? (
+          <div className='row'>
+            {this.state.userList.map((user) => (
+              <div className='col-md-6 col-lg-4' key={user.id}>
+                <User
+                  name={user.name}
+                  userName={user.username}
+                  email={user.email}
+                  phone={user.phone}
+                  onDelete={() => {
+                    this.deleteUserHandler(user.id);
+                  }}
+                />
+              </div>
+            ))}
           </div>
-        ))}
+        ) : (
+          <p style={{ textAlign: 'center', fontWeight: '900' }}>List is empty</p>
+        )}
       </div>
     );
   }

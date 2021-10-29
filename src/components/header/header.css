@@ -3,6 +3,21 @@
   background-color: rgb(230, 230, 230);
 }
 .nav{
-  height: 40px;
   background-color: rgb(241, 74, 74);
+  display: flex;
+}
+.nav a{
+  display: block;
+  text-decoration: none;
+  color: white;
+  padding: .5em 1em;
+}
+.nav a:hover{
+  background-color: hsl(0, 86%, 42%);
+}
+.nav a.active{
+  border-bottom: 4px solid rgb(7, 241, 202);
+}
+.nav a.active-link{
+  color: rgb(233, 255, 30);
 }

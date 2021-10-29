@@ -1,5 +1,7 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import './header.css'
+
 export const Header = () => {
   return (
     <div>
@@ -7,7 +9,8 @@ export const Header = () => {
         Header
       </header>
       <nav className='nav'>
-        Navbar
+        <NavLink to="/" exact activeStyle={{fontStyle: 'italic'}}>Home</NavLink>
+        <NavLink to="/users" activeClassName='active-link'>Users</NavLink>
       </nav>
     </div>
   )
