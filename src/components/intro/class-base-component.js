@@ -14,20 +14,20 @@ class ClassBaseComponent extends Component {
   // }
 
   hideClickHandler = () => {
-    console.log(this);
+    // console.log(this);
     this.setState({ isVisible: false });
   };
   showClickHandler = () => {
-    console.log(this);
+    // console.log(this);
     this.setState({ isVisible: true });
   };
   toggleClickHandler = () => {
-    console.log(this);
+    // console.log(this);
     this.setState({ isVisible: !this.state.isVisible });
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div>
         <button onClick={this.hideClickHandler}>Hide</button>

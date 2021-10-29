@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import './class-component-lifecycle.css';
 
 export default class ClassComponentLifecycle extends Component {
-  constructor() {
+  constructor(props) {
     super();
 
     console.log('(1. Mounting) constructor');
-
+    console.log(props)
     this.increment = this.increment.bind(this);
 
     this.state = {
@@ -16,6 +16,8 @@ export default class ClassComponentLifecycle extends Component {
   }
 
   increment() {
+    // this.props.message = 'is readonly and can not change'
+
     // console.log(this)
     this.setState({ counter: this.state.counter + 1 });
   }
@@ -27,23 +29,25 @@ export default class ClassComponentLifecycle extends Component {
 
   static getDerivedStateFromProps(props, state) {
     console.log('(2. Mounting) (5. Updating) getDerivedStateFromProps');
-    // console.log('props', props);
-    // console.log('state', state);
+    console.log('props', props);
+    console.log('state', state);
+    
     if (state.counter > 9) {
       return { ...state, counter: 9 };
     }
-    if (state.counter < -9) {
-      return { ...state, counter: -9 };
+    if (state.counter < 0) {
+      return { ...state, counter: 0 };
     }
     return null;
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     console.log('(6. Updating) shouldComponentUpdate');
-    // console.log('nextProps', nextProps)
-    // console.log('nextState', nextState)
+    console.log('nextProps', nextProps)
+    console.log('nextState', nextState)
 
-    return nextState.counter < 10 && nextState.counter > -10;
+    return nextState.counter < 10 && nextState.counter > -1;
+    
     // return true
   }
 
@@ -103,7 +107,7 @@ export default class ClassComponentLifecycle extends Component {
     console.log('snapshot = ', snapshot);
     
     // if(this.state.counter !== prevState.counter)
-    //   this.setState({...this.state, counter: 5})
+      // this.setState({...this.state, counter: 5})
     
   }
 

@@ -6,8 +6,8 @@ import UsersIndex from './pages/users/users-index';
 function App() {
   return (
     <MainLayout>
-      {/* <ComponentIntroductionIndex /> */}
-      <UsersIndex />
+      <ComponentIntroductionIndex />
+      {/* <UsersIndex /> */}
     </MainLayout>
   );
 }
