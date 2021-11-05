@@ -14,9 +14,15 @@ export default class UsersIndex extends Component {
   }
 
   componentDidMount() {
+    // console.log('Users',this.props)
+
     axios.get('https://jsonplaceholder.typicode.com/users').then((response) => {
-      // console.log(response.data);
-      this.setState({ ...this.state, userList: response.data });
+      let userList = response.data
+      if(this.props.location.state){
+        userList = [...userList, this.props.location.state.user]
+      }
+      // console.log(userList);
+      this.setState({ ...this.state, userList });
     });
   }
 
@@ -38,7 +44,7 @@ export default class UsersIndex extends Component {
       <div className='container'>
         <PageTitle title='Users' />
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Link to='/users/new' className='btn btn-new'>
+          <Link to={`${this.props.match.path}/new`} className='btn btn-new'>
             New User
           </Link>
         </div>
@@ -51,6 +57,7 @@ export default class UsersIndex extends Component {
                   userName={user.username}
                   email={user.email}
                   phone={user.phone}
+                  editPath={`${this.props.match.path}/${user.id}/edit`}
                   onDelete={() => {
                     this.deleteUserHandler(user.id);
                   }}

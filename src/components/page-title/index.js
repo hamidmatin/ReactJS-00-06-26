@@ -2,7 +2,7 @@ import React from 'react'
 import classes from './pgae-title.module.css'
 
 export const PageTitle = ({ title }) => {
-  console.log(classes)
+  // console.log(classes)
   return (
     // <h2 className={classes['text-center']}>
     //   <span>{title}</span>

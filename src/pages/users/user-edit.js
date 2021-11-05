@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
 import axios from 'axios'
+import React, { Component } from 'react'
 import { PageTitle } from '../../components/page-title'
 import UserForm from './user-form'
 
-export default class UserNew extends Component {
+export default class UserEdit extends Component {
   constructor(){
     super()
     this.state = {
@@ -15,29 +15,28 @@ export default class UserNew extends Component {
       }
     }
   }
+  componentDidMount(){
+    const {id} = this.props.match.params
+    axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
+    .then(result =>{
+      this.setState({user: result.data})
+    })
+  }
 
-  onSaveHandler = (user) =>{
-    console.log(user)
-
-    axios.post('https://jsonplaceholder.typicode.com/users', user)
+  onSaveHandler = user =>{
+    axios.put('https://jsonplaceholder.typicode.com/users/'+ user.id, user)
     .then(result => {
-      console.log(result)
-      console.log(this.props)
       
-      // window.history.back()
-      // window.location.pathname = '/users'
-      // this.props.history.push({pathname:'/users', state:{id: 1}})
       this.props.history.push('/users', {user: result.data})
     })
     .catch(error => {
       console.log(error)
     })
   }
-
   render() {
     return (
       <div className='container'>
-        <PageTitle title='New User' />
+        <PageTitle title='Edit User' />
         <UserForm user={this.state.user} onSave={this.onSaveHandler}/>
       </div>
     )

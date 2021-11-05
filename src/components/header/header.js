@@ -10,7 +10,9 @@ export const Header = () => {
       </header>
       <nav className='nav'>
         <NavLink to="/" exact activeStyle={{fontStyle: 'italic'}}>Home</NavLink>
+        <NavLink to="/hook" activeClassName='active-link'>Hook</NavLink>
         <NavLink to="/users" activeClassName='active-link'>Users</NavLink>
+        <NavLink to="/posts" activeClassName='active-link'>Posts</NavLink>
       </nav>
     </div>
   )

@@ -1,0 +1,25 @@
+.postCard{
+  padding: 1em;
+  border: 1px solid #f1f1f1;
+  box-shadow: 0 4px 4px -2px #555;
+  border-radius: 4px;
+ 
+}
+.postCard h3{
+  margin-top: 0;
+  text-align: center;
+}
+
+.postCard .cardBody{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.postCard .cardText{
+  padding: 0.5em;
+}
+.postCard .cardFooter{
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}

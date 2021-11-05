@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import './user.css';
 
@@ -18,7 +19,7 @@ export default class User extends Component {
           <div className='card-text'>{this.props.phone}</div>
         </div>
         <div className='card-footer'>
-          <button className='btn btn-edit'>Edit</button>
+          <Link to={this.props.editPath} className='btn btn-edit'>Edit</Link>
           <button className='btn btn-delete' onClick={this.props.onDelete}>
             Delete
           </button>
