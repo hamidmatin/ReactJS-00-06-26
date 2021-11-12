@@ -14,6 +14,7 @@ export const Header = () => {
         <NavLink to="/users" activeClassName='active-link'>Users</NavLink>
         <NavLink to="/posts" activeClassName='active-link'>Posts</NavLink>
         <NavLink to="/hoc-intro" activeClassName='active-link'>HOC Introduction</NavLink>
+        <NavLink to="/redux-cc" activeClassName='active-link'>Redux</NavLink>
       </nav>
     </div>
   )

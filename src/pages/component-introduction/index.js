@@ -4,7 +4,8 @@ import ClassComponentLifecycle from '../../components/intro/class-component-life
 import { FunctionBaseComponent } from '../../components/intro/function-base-component';
 import { PageTitle } from '../../components/page-title';
 
-export class ComponentIntroductionIndex extends Component {
+import { connect } from 'react-redux'
+class ComponentIntroductionIndex extends Component {
   constructor() {
     super();
     this.state = {
@@ -21,7 +22,8 @@ export class ComponentIntroductionIndex extends Component {
     return (
       <div className='container'>
         <PageTitle title='Home'/>
-
+        <p> Message = {this.props.message} </p>
+        <hr />
         <button onClick={this.messageChangeHandler.bind(this, 'My counter changed by bind')}>
           Change message
         </button>
@@ -60,3 +62,11 @@ export class ComponentIntroductionIndex extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    message: state.test
+  }
+}
+
+export default connect(mapStateToProps)(ComponentIntroductionIndex)
