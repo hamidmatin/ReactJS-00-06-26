@@ -11,6 +11,7 @@ import { PostNew } from './pages/posts/post-new';
 import { PostEdit } from './pages/posts/post-edit';
 import { HOCIndex } from './pages/HOC-intro';
 import TestReduxCCIndex from './pages/test-redux-cc';
+import { TestContextIndex } from './pages/test-context';
 
 function App() {
   return (
@@ -33,7 +34,8 @@ function App() {
 
           <Route path='/hoc-intro' component={HOCIndex} />
           
-          <Route path='/redux-cc' component={TestReduxCCIndex} />
+          <Route path='/test-redux' component={TestReduxCCIndex} />
+          <Route path='/test-context' component={TestContextIndex} />
           
           <Route path="*" render={()=><p style={{textAlign: 'center'}}>Page Not Fount</p>}/>
         </Switch>
