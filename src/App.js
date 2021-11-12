@@ -9,6 +9,7 @@ import { PostIndex } from './pages/posts/posts-index';
 import { HookIndex } from './pages/react-hook/hook-index';
 import { PostNew } from './pages/posts/post-new';
 import { PostEdit } from './pages/posts/post-edit';
+import { HOCIndex } from './pages/HOC-intro';
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
           <Route path='/posts/new'  component={PostNew} />
           <Route path='/posts/:id/edit'  component={PostEdit} />
 
+          <Route path='/hoc-intro' component={HOCIndex} />
+          
           <Route path="*" render={()=><p style={{textAlign: 'center'}}>Page Not Fount</p>}/>
         </Switch>
       </MainLayout>

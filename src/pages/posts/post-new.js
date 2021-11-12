@@ -13,7 +13,7 @@ export const PostNew = () => {
   })
 
   const onSaveHandler = (post) =>{
-    axios.post('', post)
+    axios.post('https://jsonplaceholder.typicode.com/posts', post)
     .then(result =>{
       history.push('/users', {post: result.data})
     })

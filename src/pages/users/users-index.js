@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import User from './user';
 import { PageTitle } from '../../components/page-title';
 import { Link } from 'react-router-dom';
-
+import UsersCardView from './users-card-view';
+import { withLoading } from '../../HOC/with-loading';
 export default class UsersIndex extends Component {
   constructor() {
     super();
     this.state = {
       userList: [],
+      isLoading: true,
     };
   }
 
@@ -17,12 +18,12 @@ export default class UsersIndex extends Component {
     // console.log('Users',this.props)
 
     axios.get('https://jsonplaceholder.typicode.com/users').then((response) => {
-      let userList = response.data
-      if(this.props.location.state){
-        userList = [...userList, this.props.location.state.user]
+      let userList = response.data;
+      if (this.props.location.state) {
+        userList = [...userList, this.props.location.state.user];
       }
       // console.log(userList);
-      this.setState({ ...this.state, userList });
+      this.setState({ userList, isLoading: false });
     });
   }
 
@@ -40,6 +41,8 @@ export default class UsersIndex extends Component {
   };
 
   render() {
+    const UsersCardViewWithLoading = withLoading(UsersCardView);
+
     return (
       <div className='container'>
         <PageTitle title='Users' />
@@ -48,26 +51,13 @@ export default class UsersIndex extends Component {
             New User
           </Link>
         </div>
-        {this.state.userList.length > 0 ? (
-          <div className='row'>
-            {this.state.userList.map((user) => (
-              <div className='col-md-6 col-lg-4' key={user.id}>
-                <User
-                  name={user.name}
-                  userName={user.username}
-                  email={user.email}
-                  phone={user.phone}
-                  editPath={`${this.props.match.path}/${user.id}/edit`}
-                  onDelete={() => {
-                    this.deleteUserHandler(user.id);
-                  }}
-                />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p style={{ textAlign: 'center', fontWeight: '900' }}>List is empty</p>
-        )}
+
+        <UsersCardViewWithLoading
+          isLoading={this.state.isLoading}
+          userList={this.state.userList}
+          editPath={this.props.match.path}
+          onDelete={this.deleteUserHandler}
+        />
       </div>
     );
   }
